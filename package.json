@@ -1,0 +1,39 @@
+{
+  "name": "@fewcha/examples",
+  "version": "1.0.0",
+  "author": "fewcha.app",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap --npm-client=yarn",
+    "test": "lerna run test --npm-client=yarn --stream",
+    "publish": "lerna publish --no-private",
+    "bs": "yarn bootstrap",
+    "link-all": "lerna exec --parallel yarn link",
+    "unlink-all": "lerna exec --parallel --bail=false yarn unlink",
+    "nx": "nx"
+  },
+  "dependencies": {
+    "@commitlint/config-conventional": "^17.2.0",
+    "@types/node": "^18.11.9",
+    "commitlint": "^17.2.0",
+    "lerna": "^6.0.1",
+    "lint-staged": "^13.0.3",
+    "nx": "^15.0.10",
+    "typescript": "^4.8.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "npx --no-install commitlint --edit \"$1\"",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,css,json,md}": [
+      "prettier --write"
+    ]
+  }
+}
